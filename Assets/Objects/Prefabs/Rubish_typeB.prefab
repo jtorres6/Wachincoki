@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rubish_typeB
       objectReference: {fileID: 0}
+    - target: {fileID: 733193079664927067, guid: 2dcfb687720650c429ff27bd7a2b01d4,
+        type: 3}
+      propertyPath: value
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3602469627423687942, guid: 2dcfb687720650c429ff27bd7a2b01d4,
         type: 3}
       propertyPath: m_LocalPosition.x
