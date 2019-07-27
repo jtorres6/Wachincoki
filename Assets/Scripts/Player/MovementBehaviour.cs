@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementBehaviour : MonoBehaviour{
+public class MovementBehaviour : MonoBehaviour
+{
     private int speed = 5;
     private Rigidbody rigidBody;
     // Start is called before the first frame update

@@ -21,12 +21,13 @@ public class RubishInstancer : MonoBehaviour
         for (int i = 0; i < instances; i++) {
             int idx = Random.Range(0, rubishTypes.Length);
             Rubish rubishType = rubishTypes[idx];
-
+            rubishType.ownership = area.ownership;
+            
             float x = Random.Range(area.minX, area.maxX);
             float y = Random.Range(area.minY, area.maxY) + y_offset;
             float z = Random.Range(area.minZ, area.maxZ);
 
-            GameObject rubish = Instantiate(rubishType.prefab, new Vector3(x, y, z), Quaternion.identity);
+            GameObject rubish = Instantiate(rubishType.gameObject, new Vector3(x, y, z), Quaternion.identity);
             rubishInstances.Add(rubish);
         }
     }
