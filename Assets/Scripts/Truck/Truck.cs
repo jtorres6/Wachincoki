@@ -50,11 +50,9 @@ public class Truck : MonoBehaviour {
     }
 
     IEnumerator StopForSeconds(int seconds) {
-        Debug.Log("Stop");
         stopped = true;
         rigidBody.velocity = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(seconds);
         stopped = false;
-        Debug.Log("Resume");
     }
 }

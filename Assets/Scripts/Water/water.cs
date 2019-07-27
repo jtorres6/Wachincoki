@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class water : MonoBehaviour
 {
+    public float minY;
+    public float maxY;
+    
+    private Animator waveAnimation;
+
+    private enum Direction {
+        UP = 0,
+        DOWN = 1,
+    }
+
+    private Direction direction;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        waveAnimation = GetComponent<Animator>();
+        waveAnimation.SetTrigger("Activate");
     }
 
-    // Update is called once per frame
-    void Update() {
-        transform.Translate(Vector3.forward * Time.deltaTime);
-    }
 }

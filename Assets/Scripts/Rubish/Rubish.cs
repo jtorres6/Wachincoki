@@ -14,7 +14,6 @@ public class Rubish : MonoBehaviour {
         }
 
         if (other.gameObject.transform.tag == "TruckGarbage") {
-            Debug.Log("Hit by Truck");
             Destroy(gameObject);
             return;
         }
