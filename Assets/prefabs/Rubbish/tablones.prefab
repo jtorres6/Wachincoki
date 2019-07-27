@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2361895984860809905}
   - component: {fileID: 2361895984860809906}
   - component: {fileID: 2361895984860809907}
+  - component: {fileID: 4955699091482736106}
   m_Layer: 0
   m_Name: tablones
   m_TagString: Rubbish
@@ -109,6 +110,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7762592, y: 2.2795565, z: 0.19225258}
   m_Center: {x: -0.050285697, y: -0.31971598, z: 0.032854564}
+--- !u!114 &4955699091482736106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2361895984860809900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d9c78ea8f3ebe641b506de742f0f096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 7
+  ownership: 1
 --- !u!1001 &2361895983350306562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,6 +191,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3515562526039034877, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21,
+        type: 3}
+      propertyPath: value
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8899315000416515108, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21,
         type: 3}
       propertyPath: m_Size.y
@@ -206,12 +226,8 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: -0.2103582
       objectReference: {fileID: 0}
-    - target: {fileID: 3515562526039034877, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21,
-        type: 3}
-      propertyPath: value
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3515562526039034877, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21, type: 3}
 --- !u!4 &967894976190470940 stripped
 Transform:

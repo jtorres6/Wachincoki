@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7540689376160382156}
   - component: {fileID: 7540689376160382155}
   - component: {fileID: 7540689376160382154}
+  - component: {fileID: 3950035946284808950}
   m_Layer: 0
   m_Name: vaso
   m_TagString: Rubbish
@@ -110,6 +111,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6225439, y: 0.62254137, z: 0.56822354}
   m_Center: {x: -0.0914197, y: 0.11061575, z: 0.28411177}
+--- !u!114 &3950035946284808950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7540689376160382153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d9c78ea8f3ebe641b506de742f0f096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 5
+  ownership: 1
 --- !u!1 &7540689376664765160
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +137,6 @@ GameObject:
   - component: {fileID: 7540689376664765165}
   - component: {fileID: 7540689376664765164}
   - component: {fileID: 7540689376664765163}
-  - component: {fileID: 7540689376664765162}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -202,20 +216,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.7766552, y: 1.3925693, z: 2.7157166}
   m_Center: {x: -0.084191516, y: 0.028636003, z: -0.029151266}
---- !u!114 &7540689376664765162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540689376664765160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9c78ea8f3ebe641b506de742f0f096, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 5
-  ownership: 1
 --- !u!1001 &7540689376638498803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -282,6 +282,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183618685311259949, guid: 679d0b7a0db5fb6499c77ee2dd884512,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679d0b7a0db5fb6499c77ee2dd884512, type: 3}
