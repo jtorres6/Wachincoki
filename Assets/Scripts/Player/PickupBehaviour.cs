@@ -24,7 +24,7 @@ public class PickupBehaviour : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         size = GetComponent<Collider>().bounds.size;
-        rigidBody = GetComponent<Rigidbody>();
+        rigidBody = transform.parent.GetComponent<Rigidbody>();
     }
     
     // Update is called once per frame
@@ -76,10 +76,12 @@ public class PickupBehaviour : MonoBehaviour{
         //Debug.Log(horizontal + "|" + vertical);
         if(Input.GetKeyDown(KeyCode.C)){
             if(hasCollided && !isHoldingObject){
-                collision.transform.position = new Vector3(this.transform.position.x,size.y,this.transform.position.z);
-                collision.transform.SetParent(this.transform);
                 isHoldingObject = true;
-                objeto = Instantiate(collision,this.transform);
+                objeto = Instantiate(collision, new Vector3(this.transform.position.x, this.transform.position.y+2, this.transform.position.z), Quaternion.identity);
+                objeto.transform.SetParent(this.transform);
+                Rigidbody body = objeto.GetComponent<Rigidbody>();
+                body.useGravity = false;
+                body.isKinematic = true;
                 Destroy(collision);
             }
             else if(isHoldingObject){
@@ -128,6 +130,9 @@ public class PickupBehaviour : MonoBehaviour{
     
         isHoldingObject = false;
         objeto.transform.SetParent(null);
+        Rigidbody body = objeto.GetComponent<Rigidbody>();
+        body.useGravity = true;
+        body.isKinematic = false;
         hasCollided = false;
 
         float throwDistance = Vector3.Distance(objeto.transform.position,target);

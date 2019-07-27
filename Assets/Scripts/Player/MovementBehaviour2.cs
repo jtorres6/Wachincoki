@@ -7,7 +7,7 @@ public class MovementBehaviour2 : MonoBehaviour{
     private Rigidbody rigidBody;
     // Start is called before the first frame update
     void Start(){
-        rigidBody = GetComponent<Rigidbody>();
+        rigidBody = transform.parent.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame

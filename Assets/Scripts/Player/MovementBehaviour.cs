@@ -8,7 +8,7 @@ public class MovementBehaviour : MonoBehaviour
     private Rigidbody rigidBody;
     // Start is called before the first frame update
     void Start(){
-        rigidBody = GetComponent<Rigidbody>();
+        rigidBody = transform.parent.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -32,6 +32,6 @@ public class MovementBehaviour : MonoBehaviour
             x = -1;
         }
         
-        rigidBody.velocity = new Vector3(x * speed, 0, z * speed);
+        rigidBody.velocity = new Vector3(x * speed, rigidBody.velocity.y , z * speed);
     }
 }

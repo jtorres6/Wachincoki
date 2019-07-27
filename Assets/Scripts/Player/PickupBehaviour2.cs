@@ -76,6 +76,7 @@ public class PickupBehaviour2 : MonoBehaviour{
         if(Input.GetKeyDown(KeyCode.KeypadPeriod) || Input.GetKeyDown(KeyCode.M)){
             if(hasCollided && !isHoldingObject){
                 collision.transform.position = new Vector3(this.transform.position.x,size.y,this.transform.position.z);
+                collision.transform.SetParent(this.transform);
                 isHoldingObject = true;
                 objeto = Instantiate(collision,this.transform);
                 Destroy(collision);

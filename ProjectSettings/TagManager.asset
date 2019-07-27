@@ -9,6 +9,7 @@ TagManager:
   - Reset
   - StopArea
   - TruckGarbage
+  - Rubbish
   layers:
   - Default
   - TransparentFX
