@@ -150,7 +150,7 @@ public class PickupBehaviour : MonoBehaviour{
         float Y0 = 0;
         float Z0 = 0;
 
-        float time = 1.0f;
+        float time = 2.0f;
 
         float Vx = (throwDirection.x - X0) / time;
         float Vz = (throwDirection.z - Z0) / time;
