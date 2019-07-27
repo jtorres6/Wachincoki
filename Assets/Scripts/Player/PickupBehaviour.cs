@@ -97,17 +97,14 @@ public class PickupBehaviour : MonoBehaviour{
     }
 
     void OnTriggerEnter(Collider collision){
-        string collidedObject = collision.gameObject.name;
-        Debug.Log(collidedObject);
-        if (collidedObject.Contains("Rubbish")){
+        if (collision.gameObject.tag == "Rubbish"){
             hasCollided = true;
             this.collision = collision.gameObject;
         }
     }
 
     void OnTriggerExit(Collider collision){
-        string collidedObject = collision.gameObject.name;
-        if (collidedObject.Contains("Rubbish")){
+        if (collision.gameObject.tag == "Rubbish"){
             hasCollided = false;
             isHoldingObject = false;
         }
