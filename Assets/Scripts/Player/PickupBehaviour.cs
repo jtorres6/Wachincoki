@@ -82,6 +82,7 @@ public class PickupBehaviour : MonoBehaviour{
                 Rigidbody body = objeto.GetComponent<Rigidbody>();
                 body.useGravity = false;
                 body.isKinematic = true;
+                body.detectCollisions = false;
                 Destroy(collision);
             }
             else if(isHoldingObject){
@@ -133,6 +134,7 @@ public class PickupBehaviour : MonoBehaviour{
         Rigidbody body = objeto.GetComponent<Rigidbody>();
         body.useGravity = true;
         body.isKinematic = false;
+        body.detectCollisions = true;
         hasCollided = false;
 
         float throwDistance = Vector3.Distance(objeto.transform.position,target);

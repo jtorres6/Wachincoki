@@ -24,7 +24,7 @@ public class PickupBehaviour2 : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         size = GetComponent<Collider>().bounds.size;
-        rigidBody = GetComponent<Rigidbody>();
+        rigidBody = transform.parent.GetComponent<Rigidbody>();
     }
     
     // Update is called once per frame
@@ -73,12 +73,16 @@ public class PickupBehaviour2 : MonoBehaviour{
             dirVertical = 0;
         }
 
-        if(Input.GetKeyDown(KeyCode.KeypadPeriod) || Input.GetKeyDown(KeyCode.M)){
+        //Debug.Log(horizontal + "|" + vertical);
+        if(Input.GetKeyDown(KeyCode.KeypadPeriod)){
             if(hasCollided && !isHoldingObject){
-                collision.transform.position = new Vector3(this.transform.position.x,size.y,this.transform.position.z);
-                collision.transform.SetParent(this.transform);
                 isHoldingObject = true;
-                objeto = Instantiate(collision,this.transform);
+                objeto = Instantiate(collision, new Vector3(this.transform.position.x, this.transform.position.y+2, this.transform.position.z), Quaternion.identity);
+                objeto.transform.SetParent(this.transform);
+                Rigidbody body = objeto.GetComponent<Rigidbody>();
+                body.useGravity = false;
+                body.isKinematic = true;
+                body.detectCollisions = false;
                 Destroy(collision);
             }
             else if(isHoldingObject){
@@ -86,7 +90,7 @@ public class PickupBehaviour2 : MonoBehaviour{
                 ready = true;
             }
         }
-        if(Input.GetKeyUp(KeyCode.KeypadPeriod) || Input.GetKeyDown(KeyCode.M)){
+        if(Input.GetKeyUp(KeyCode.KeypadPeriod)){
             if(isHoldingObject && ready){
                 finalRelease = Time.time;
                 ready = false;
@@ -96,16 +100,14 @@ public class PickupBehaviour2 : MonoBehaviour{
     }
 
     void OnTriggerEnter(Collider collision){
-        string collidedObject = collision.gameObject.name;
-        if (collidedObject.Contains("Rubbish")){
+        if (collision.gameObject.tag == "Rubbish"){
             hasCollided = true;
             this.collision = collision.gameObject;
         }
     }
 
     void OnTriggerExit(Collider collision){
-        string collidedObject = collision.gameObject.name;
-        if (collidedObject.Contains("Rubbish")){
+        if (collision.gameObject.tag == "Rubbish"){
             hasCollided = false;
             isHoldingObject = false;
         }
@@ -123,14 +125,16 @@ public class PickupBehaviour2 : MonoBehaviour{
             dist = 5 + (finalRelease - initialPress);
         }
 
-        Debug.Log(dist);
-
         Vector3 target = new Vector3(this.transform.position.x,0.5f,this.transform.position.z);
         target.x += dist * h * dirHorizontal;
         target.z += dist * v * dirVertical;
     
         isHoldingObject = false;
         objeto.transform.SetParent(null);
+        Rigidbody body = objeto.GetComponent<Rigidbody>();
+        body.useGravity = true;
+        body.detectCollisions = true;
+        body.isKinematic = false;
         hasCollided = false;
 
         float throwDistance = Vector3.Distance(objeto.transform.position,target);
