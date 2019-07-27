@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Rubish : MonoBehaviour {
     public int value;
-
     public int ownership;
 
     void OnTriggerEnter(Collider other) {

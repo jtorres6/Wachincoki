@@ -109,7 +109,6 @@ public class PickupBehaviour : MonoBehaviour{
     void OnTriggerExit(Collider collision){
         if (collision.gameObject.tag == "Rubbish"){
             hasCollided = false;
-            isHoldingObject = false;
         }
     }
 

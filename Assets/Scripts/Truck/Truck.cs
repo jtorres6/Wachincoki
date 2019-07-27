@@ -24,8 +24,8 @@ public class Truck : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        float x = 0;
-        float z = -1;
+        float x = -1;
+        float z = 0;
 
         if (!stopped) {
             rigidBody.velocity = new Vector3(x * speed, 0, z * speed);
@@ -33,6 +33,8 @@ public class Truck : MonoBehaviour {
     }
 
     IEnumerator OnTriggerEnter(Collider other) {
+        Debug.Log(other.gameObject.transform.tag);
+
         if (other.gameObject.transform.tag == "Reset") {
             yield return StopForSeconds(5);
             transform.position = new Vector3(originalX, originalY, originalZ);
@@ -41,6 +43,10 @@ public class Truck : MonoBehaviour {
         if (other.gameObject.transform.tag == "StopArea") {
             yield return StopForSeconds(2);
         }
+    }
+
+    void OnTriggerStay(Collider other) {
+        Debug.Log(other.gameObject.transform.tag);
     }
 
     IEnumerator StopForSeconds(int seconds) {
