@@ -2,35 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementBehaviour : MonoBehaviour
-{    
+public class MovementBehaviour2 : MonoBehaviour{
     private int speed = 5;
     private Rigidbody rigidBody;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         rigidBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         float x = 0; 
         float z = 0;
 
-        if(Input.GetKey(KeyCode.W)){
+        if(Input.GetKey(KeyCode.UpArrow)){
             z = 1;
         }
 
-        if(Input.GetKey(KeyCode.S)){
+        if(Input.GetKey(KeyCode.DownArrow)){
             z = -1;
         }
         
-        if(Input.GetKey(KeyCode.D)){
+        if(Input.GetKey(KeyCode.RightArrow)){
             x = 1;
         }
 
-        if(Input.GetKey(KeyCode.A)){
+        if(Input.GetKey(KeyCode.LeftArrow)){
             x = -1;
         }
         
