@@ -60,7 +60,7 @@ public class Truck : MonoBehaviour {
     IEnumerator StopForSeconds(int seconds) {
         stopped = true;
         rigidBody.velocity = new Vector3(0, 0, 0);
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(0.2f);
         stopped = false;
     }
 }

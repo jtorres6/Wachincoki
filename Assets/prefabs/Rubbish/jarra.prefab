@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4006729279653772245}
   - component: {fileID: 4006729279653772246}
   - component: {fileID: 4006729279653772247}
+  - component: {fileID: 1241177309144318542}
   m_Layer: 0
   m_Name: jarra
   m_TagString: Rubbish
@@ -110,6 +111,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1241177309144318542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4006729279653772240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d9c78ea8f3ebe641b506de742f0f096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 10
+  ownership: 1
 --- !u!1 &4006729280851967923
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,10 +137,9 @@ GameObject:
   - component: {fileID: 4006729280851967926}
   - component: {fileID: 4006729280851967927}
   - component: {fileID: 4006729280851967920}
-  - component: {fileID: 4006729280851967921}
   m_Layer: 0
   m_Name: Controller
-  m_TagString: Untagged
+  m_TagString: Rubbish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,20 +216,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.7766552, y: 1.3925693, z: 2.7157166}
   m_Center: {x: -0.084191516, y: 0.028636003, z: -0.029151266}
---- !u!114 &4006729280851967921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4006729280851967923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9c78ea8f3ebe641b506de742f0f096, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 10
-  ownership: 1
 --- !u!1001 &4006729280970703002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -227,6 +227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: puntosFlotando
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183618685311259951, guid: 679d0b7a0db5fb6499c77ee2dd884512,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8183618685311259948, guid: 679d0b7a0db5fb6499c77ee2dd884512,
         type: 3}
@@ -282,6 +287,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183618685311259949, guid: 679d0b7a0db5fb6499c77ee2dd884512,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679d0b7a0db5fb6499c77ee2dd884512, type: 3}
