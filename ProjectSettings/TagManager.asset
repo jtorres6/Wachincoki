@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wave
+  - ChangeOwnership
+  - Reset
+  - StopArea
+  - TruckGarbage
   layers:
   - Default
   - TransparentFX
