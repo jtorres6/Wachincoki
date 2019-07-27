@@ -22,5 +22,4 @@ public class water : MonoBehaviour
         waveAnimation = GetComponent<Animator>();
         waveAnimation.SetTrigger("Activate");
     }
-
 }

@@ -5,11 +5,13 @@ using UnityEngine;
 public class Truck : MonoBehaviour {
     private bool stopped;
     private Rigidbody rigidBody;
+    private float vX, vZ;
 
     public int speed = 5;
-    public float originalX;
-    public float originalY;
-    public float originalZ;
+
+    public Vector3[] positions;
+    public Vector3[] scales;
+    public Vector3[] velocity;
 
     Truck() {
         stopped = false;
@@ -18,17 +20,18 @@ public class Truck : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         rigidBody = GetComponent<Rigidbody>();
+        int idx = Random.Range(0, positions.Length);
 
-        transform.position = new Vector3(originalX, originalY, originalZ);
+        transform.position = positions[idx];
+        transform.localScale = scales[idx];
+        vX = velocity[idx].x;
+        vZ = velocity[idx].z;
     }
 
     // Update is called once per frame
     void Update() {
-        float x = -1;
-        float z = 0;
-
         if (!stopped) {
-            rigidBody.velocity = new Vector3(x * speed, 0, z * speed);
+            rigidBody.velocity = new Vector3(vX * speed, 0, vZ * speed);
         }
     }
 
@@ -37,7 +40,12 @@ public class Truck : MonoBehaviour {
 
         if (other.gameObject.transform.tag == "Reset") {
             yield return StopForSeconds(5);
-            transform.position = new Vector3(originalX, originalY, originalZ);
+
+            int idx = Random.Range(0, positions.Length);
+            transform.position = positions[idx];
+            transform.localScale = scales[idx];
+            vX = velocity[idx].x;
+            vZ = velocity[idx].z;
         }
 
         if (other.gameObject.transform.tag == "StopArea") {

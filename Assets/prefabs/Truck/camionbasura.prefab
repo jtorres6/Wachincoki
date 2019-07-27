@@ -273,8 +273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1710182318042967400}
-  - component: {fileID: 5932258553956206476}
-  - component: {fileID: 2107084532481211370}
+  - component: {fileID: 3662389054022652942}
   m_Layer: 0
   m_Name: camionbasura
   m_TagString: Untagged
@@ -308,7 +307,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 91.686005, z: 0}
---- !u!114 &5932258553956206476
+--- !u!114 &3662389054022652942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -321,25 +320,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  originalX: 0
-  originalY: 0
-  originalZ: 0
---- !u!54 &2107084532481211370
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2441109435344232315}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  positions:
+  - {x: 13.4, y: 3.16, z: -18.72}
+  - {x: -16.03, y: 3.16, z: -19.66}
+  rotations:
+  - {x: 0, y: 88.18001, z: 0, w: 0}
+  - {x: 0, y: 268.18, z: 0, w: 0}
 --- !u!1 &3674806486174129703
 GameObject:
   m_ObjectHideFlags: 0
