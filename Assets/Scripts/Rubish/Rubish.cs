@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Rubish : MonoBehaviour {
-    public GameObject prefab;
     public int value;
 
+    public int ownership;
+
     void OnTriggerEnter(Collider other) {
-        Debug.Log("Hola");
-        Debug.Log("Hit by " + other.gameObject.transform.tag);
         if (other.gameObject.transform.tag == "Wave") {
-            Debug.Log("Hit by wave");
-            Destroy(prefab);
+            Debug.Log("Hit by wave. Remove " + value + " to Player " + ownership);
+            Destroy(gameObject);
         }
+
+        if (other.gameObject.transform.tag == "TruckGarbage") {
+            Debug.Log("Hit by Truck");
+            Destroy(gameObject);
+        }
+    }
+
+    public void SetOwnership(int owner) {
+        ownership = owner;
     }
 }
