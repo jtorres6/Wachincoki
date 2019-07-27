@@ -6,6 +6,7 @@ public class PickupBehaviour2 : MonoBehaviour{
     private bool isHoldingObject = false;
     private bool hasCollided = false;
     private GameObject collision;
+    private GameObject objeto = null;
     private Vector3 size;
 
     private float throwAngle = 45.0f;
@@ -72,18 +73,19 @@ public class PickupBehaviour2 : MonoBehaviour{
             dirVertical = 0;
         }
 
-        if(Input.GetKeyDown(KeyCode.KeypadPeriod)){
+        if(Input.GetKeyDown(KeyCode.KeypadPeriod) || Input.GetKeyDown(KeyCode.M)){
             if(hasCollided && !isHoldingObject){
                 collision.transform.position = new Vector3(this.transform.position.x,size.y,this.transform.position.z);
-                collision.transform.SetParent(this.transform);
                 isHoldingObject = true;
+                objeto = Instantiate(collision,this.transform);
+                Destroy(collision);
             }
             else if(isHoldingObject){
                 initialPress = Time.time;
                 ready = true;
             }
         }
-        if(Input.GetKeyUp(KeyCode.KeypadPeriod)){
+        if(Input.GetKeyUp(KeyCode.KeypadPeriod) || Input.GetKeyDown(KeyCode.M)){
             if(isHoldingObject && ready){
                 finalRelease = Time.time;
                 ready = false;
@@ -92,7 +94,7 @@ public class PickupBehaviour2 : MonoBehaviour{
         }
     }
 
-    void OnCollisionEnter(Collision collision){
+    void OnTriggerEnter(Collider collision){
         string collidedObject = collision.gameObject.name;
         if (collidedObject.Contains("Rubbish")){
             hasCollided = true;
@@ -100,12 +102,11 @@ public class PickupBehaviour2 : MonoBehaviour{
         }
     }
 
-    void OnCollisionExit(Collision collision){
+    void OnTriggerExit(Collider collision){
         string collidedObject = collision.gameObject.name;
         if (collidedObject.Contains("Rubbish")){
             hasCollided = false;
             isHoldingObject = false;
-            collision.transform.SetParent(null);
         }
     }
 
@@ -128,10 +129,10 @@ public class PickupBehaviour2 : MonoBehaviour{
         target.z += dist * v * dirVertical;
     
         isHoldingObject = false;
-        collision.transform.SetParent(null);
+        objeto.transform.SetParent(null);
         hasCollided = false;
 
-        float throwDistance = Vector3.Distance(collision.transform.position,target);
+        float throwDistance = Vector3.Distance(objeto.transform.position,target);
         float throwVelocity = throwDistance / (Mathf.Sin(2 * throwAngle * Mathf.Deg2Rad) / gravity);
     
         float Vx = Mathf.Sqrt(throwVelocity) * Mathf.Cos(throwAngle * Mathf.Deg2Rad);
@@ -139,17 +140,17 @@ public class PickupBehaviour2 : MonoBehaviour{
     
         float flightDuration = throwDistance / Vx;
 
-        collision.transform.rotation = Quaternion.LookRotation(target - collision.transform.position);
+        objeto.transform.rotation = Quaternion.LookRotation(target - objeto.transform.position);
 
         float elapse_time = 0;
  
         while (elapse_time < flightDuration){
-            collision.transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
+            objeto.transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
            
             elapse_time += Time.deltaTime;
  
             yield return null;
         }
-        collision.transform.rotation = new Quaternion(0,0,0,1);
+        objeto.transform.rotation = new Quaternion(0,0,0,1);
     }
 }
