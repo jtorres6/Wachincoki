@@ -9,14 +9,13 @@ public class PickupBehaviour : MonoBehaviour{
     private GameObject objeto = null;
     private Vector3 size;
 
-    private float throwAngle = 45.0f;
-    private float gravity = 9.81f;
     private Rigidbody rigidBody;
     private bool ready = false;
     private bool horizontal = false;
     private bool vertical = false;
     private int dirHorizontal = 1; //1 derecha -1 izquierda
     private int dirVertical = 0; //1 arriba -1 abajo
+    private float threeshold = 0.3f;
 
     private float initialPress;
     private float finalRelease;
@@ -29,51 +28,63 @@ public class PickupBehaviour : MonoBehaviour{
     
     // Update is called once per frame
     void Update(){
-        if(rigidBody.velocity.x != 0 && rigidBody.velocity.z != 0){
+        if((rigidBody.velocity.x > threeshold || rigidBody.velocity.x < -threeshold) && (rigidBody.velocity.z > threeshold || rigidBody.velocity.z < -threeshold)){
             vertical = true;
             
-            if(rigidBody.velocity.x > 0){
+            if(rigidBody.velocity.x > threeshold){
                 dirHorizontal = 1;
             }
-            else{
+            else if(rigidBody.velocity.x < -threeshold){
                 dirHorizontal = -1;
             }
+            else{
+                dirHorizontal = 0;
+            }
 
-            if(rigidBody.velocity.z > 0){
+            if(rigidBody.velocity.z > threeshold){
                 dirVertical = 1;
             }
-            else{
+            else if(rigidBody.velocity.z < -threeshold){
                 dirVertical = -1;
+            }
+            else{
+                dirVertical = 0;
             }
 
         }
-        else if(rigidBody.velocity.z != 0){
+        else if((rigidBody.velocity.z > threeshold || rigidBody.velocity.z < -threeshold)){
             vertical = true;
             horizontal = false;
             dirHorizontal = 0; 
 
-            if(rigidBody.velocity.z > 0){
+            if(rigidBody.velocity.z > threeshold){
                 dirVertical = 1;
             }
-            else{
+            else if(rigidBody.velocity.z < -threeshold){
                 dirVertical = -1;
             }
+            else{
+                dirVertical = 0;
+            }
         }
-        else if(rigidBody.velocity.x != 0){
+        else if((rigidBody.velocity.x > threeshold || rigidBody.velocity.x < -threeshold)){
             horizontal = true;
             vertical = false;
 
-            if(rigidBody.velocity.x > 0){
+            if(rigidBody.velocity.x > threeshold){
                 dirHorizontal = 1;
             }
-            else{
+            else if(rigidBody.velocity.x < -threeshold){
                 dirHorizontal = -1;
+            }
+            else{
+                dirHorizontal = 0;
             }
 
             dirVertical = 0;
         }
 
-        //Debug.Log(horizontal + "|" + vertical);
+
         if(Input.GetKeyDown(KeyCode.C)){
             if(hasCollided && !isHoldingObject){
                 isHoldingObject = true;
@@ -94,7 +105,7 @@ public class PickupBehaviour : MonoBehaviour{
             if(isHoldingObject && ready){
                 finalRelease = Time.time;
                 ready = false;
-                StartCoroutine(throwObject());
+                throwObject();
             }
         }
     }
@@ -112,49 +123,49 @@ public class PickupBehaviour : MonoBehaviour{
         }
     }
 
-    IEnumerator throwObject(){
+    void throwObject(){
         int h = horizontal ? 1 : 0;
         int v = vertical ? 1 : 0;
         float dist = 0;
 
         if(finalRelease - initialPress >= maximunValue){
-            dist = 10;
+            dist = 12;
         }
         else{
-            dist = 5 + (finalRelease - initialPress);
+            dist = 8 + (finalRelease - initialPress);
         }
 
         Vector3 target = new Vector3(this.transform.position.x,0.5f,this.transform.position.z);
         target.x += dist * h * dirHorizontal;
         target.z += dist * v * dirVertical;
     
-        isHoldingObject = false;
         objeto.transform.SetParent(null);
         Rigidbody body = objeto.GetComponent<Rigidbody>();
         body.useGravity = true;
         body.isKinematic = false;
         body.detectCollisions = true;
-        hasCollided = false;
+        
+        Vector3 throwDirection = target - objeto.transform.position;
+        float X0 = 0;
+        float Y0 = 0;
+        float Z0 = 0;
 
-        float throwDistance = Vector3.Distance(objeto.transform.position,target);
-        float throwVelocity = throwDistance / (Mathf.Sin(2 * throwAngle * Mathf.Deg2Rad) / gravity);
-    
-        float Vx = Mathf.Sqrt(throwVelocity) * Mathf.Cos(throwAngle * Mathf.Deg2Rad);
-        float Vy = Mathf.Sqrt(throwVelocity) * Mathf.Sin(throwAngle * Mathf.Deg2Rad);
-    
-        float flightDuration = throwDistance / Vx;
+        float time = 1.0f;
 
-        objeto.transform.rotation = Quaternion.LookRotation(target - objeto.transform.position);
+        float Vx = (throwDirection.x - X0) / time;
+        float Vz = (throwDirection.z - Z0) / time;
+        float Vy = (throwDirection.y - Y0 + (0.5f*Mathf.Abs(Physics.gravity.magnitude) * Mathf.Pow(time,2))) / time;
 
-        float elapse_time = 0;
- 
-        while (elapse_time < flightDuration){
-            objeto.transform.Translate(0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
-           
-            elapse_time += Time.deltaTime;
- 
-            yield return null;
-        }
+        Vx -= body.velocity.x;
+        Vy -= body.velocity.y;
+        Vz -= body.velocity.z;
+
+        body.AddForce(Vector3.right * Vx, ForceMode.VelocityChange);
+        body.AddForce(Vector3.up * Vy, ForceMode.VelocityChange);
+        body.AddForce(Vector3.forward * Vz, ForceMode.VelocityChange);
+
         objeto.transform.rotation = new Quaternion(0,0,0,1);
+        isHoldingObject = false;
+        hasCollided = false;
     }
 }
