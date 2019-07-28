@@ -9,6 +9,8 @@ public class Points : MonoBehaviour{
     private Transform padre;
     private int puntos;
 
+    private Canvas canvas;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +26,6 @@ public class Points : MonoBehaviour{
         Vector3 posPoints = Camera.main.WorldToScreenPoint(this.transform.position);
         puntosBasura.transform.position = posPoints;
         puntosBasura.text = puntos.ToString();
+        //puntosBasura.transform.SetParent (canvas.transform,false);
     }
 }
