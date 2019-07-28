@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 6443996018391552491}
   - component: {fileID: 6443996018391552490}
   - component: {fileID: 1630057471589204943}
+  - component: {fileID: 7284984114564879582}
   m_Layer: 0
   m_Name: Tarro
   m_TagString: Rubbish
@@ -153,7 +154,7 @@ BoxCollider:
   m_GameObject: {fileID: 6443996018391552493}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.3742528, y: 0.47467148, z: 0}
   m_Center: {x: 0.03637147, y: 0.26266426, z: 0.020276427}
@@ -169,8 +170,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9c78ea8f3ebe641b506de742f0f096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textoAsociado: {fileID: 0}
   value: 10
   ownership: 1
+--- !u!136 &7284984114564879582
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6443996018391552493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.14587075
+  m_Height: 0.5298877
+  m_Direction: 1
+  m_Center: {x: 0.07116151, y: 0.23505616, z: -0.09862}
 --- !u!1 &6443996019500308392
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,5 +458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9c78ea8f3ebe641b506de742f0f096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textoAsociado: {fileID: 0}
   value: 10
   ownership: 2
