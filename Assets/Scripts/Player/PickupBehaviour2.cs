@@ -100,6 +100,7 @@ public class PickupBehaviour2 : MonoBehaviour{
                 Destroy(collision);
             }
             else if(isHoldingObject && objeto != null){
+                gameObject.GetComponent<MovementBehaviour2>().speed = 1;
                 initialPress = Time.time;
                 ready = true;
             }
@@ -110,6 +111,7 @@ public class PickupBehaviour2 : MonoBehaviour{
                 ready = false;
                 throwObject();
                 this.transform.parent.transform.localScale = originalScale;
+                gameObject.GetComponent<MovementBehaviour2>().speed = 5;
             }
         }
     }

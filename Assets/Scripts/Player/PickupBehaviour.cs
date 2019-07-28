@@ -30,6 +30,7 @@ public class PickupBehaviour : MonoBehaviour{
     
     // Update is called once per frame
     void Update(){
+
         if((rigidBody.velocity.x > threeshold || rigidBody.velocity.x < -threeshold) && (rigidBody.velocity.z > threeshold || rigidBody.velocity.z < -threeshold)){
             vertical = true;
             
@@ -100,6 +101,7 @@ public class PickupBehaviour : MonoBehaviour{
                 Destroy(collision);
             }
             else if(isHoldingObject && objeto != null){
+                gameObject.GetComponent<MovementBehaviour>().speed = 1;
                 initialPress = Time.time;
                 ready = true;
             }
@@ -110,6 +112,7 @@ public class PickupBehaviour : MonoBehaviour{
                 ready = false;
                 throwObject();
                 this.transform.parent.transform.localScale = originalScale;
+                gameObject.GetComponent<MovementBehaviour>().speed = 5;
             }
         }
     }
