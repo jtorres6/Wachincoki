@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
     public GameObject canvas;
@@ -28,7 +28,8 @@ public class gameManager : MonoBehaviour
             _instance = this;
         }
 
-    private int winner = 0;
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
@@ -68,6 +69,14 @@ public class gameManager : MonoBehaviour
 
         if (player1HP <= 0 || player2HP <= 0) {
             gameOver = true;
+        }
+    }
+
+    public void IncreaseHP(int playerID, int value) {
+        if (playerID == 1) {
+            player1HP += value;
+        } else {
+            player2HP += value;
         }
     }
 
