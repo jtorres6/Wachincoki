@@ -20,10 +20,11 @@ public class RubishInstancer : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        List<Rubish> noLongerValid = new List<Rubish>();
         bool valid = false;
 
         // Greedy to create rubish
-        while (currentCounter < maxCounter) {
+        while (currentCounter < maxCounter && noLongerValid.Count < rubishTypes.Length) {
             do {
                 int area_idx = Random.Range(0, areas.Length);
                 InstanceArea insarea = areas[area_idx];
@@ -41,6 +42,8 @@ public class RubishInstancer : MonoBehaviour
                     currentCounter += rubishType.value;
                     rubishInstances.Add(rubish);
                     valid = true;
+                } else {
+                    noLongerValid.Add(rubishType);
                 }
 
             } while(!valid); 
