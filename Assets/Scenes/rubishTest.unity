@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -258,10 +258,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d177a51b69ded4abc859b1cbe7cf2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area: {fileID: 457506452}
-  instances: 100
+  areas:
+  - {fileID: 457506452}
   rubishTypes:
-  - {fileID: 2576996769181676751, guid: 2dd98a03d9045e44bbefb746a87a9acd, type: 3}
+  - {fileID: 1241177309144318542, guid: 7c8ea83adc371ac4ca90d5c88ad7868d, type: 3}
+  - {fileID: 6444548153966891619, guid: 9778c32c688facc49b25a08390f549a9, type: 3}
+  - {fileID: 4955699091482736106, guid: 060f32c19d2f1d741a4a7b507bccaaf7, type: 3}
+  - {fileID: 5469469938608953068, guid: 246efc3ec82f4a1449961c3cabfe9702, type: 3}
+  - {fileID: 1630057471589204943, guid: 2dd98a03d9045e44bbefb746a87a9acd, type: 3}
+  - {fileID: 5713320597409667632, guid: b64e1e23a75e5e8409c190cf12355fdb, type: 3}
+  - {fileID: 3950035946284808950, guid: da466bc2b3ad4d74b8bb0e1aea7b474e, type: 3}
+  maxCounter: 500
 --- !u!4 &306686822
 Transform:
   m_ObjectHideFlags: 0
@@ -305,7 +312,7 @@ Transform:
   m_Children:
   - {fileID: 908633086}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &457506451
 GameObject:
