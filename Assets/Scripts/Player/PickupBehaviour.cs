@@ -16,6 +16,7 @@ public class PickupBehaviour : MonoBehaviour{
     private int dirHorizontal = 1; //1 derecha -1 izquierda
     private int dirVertical = 0; //1 arriba -1 abajo
     private float threeshold = 0.3f;
+    private Vector3 originalScale;
 
     private float initialPress;
     private float finalRelease;
@@ -24,6 +25,7 @@ public class PickupBehaviour : MonoBehaviour{
     void Start(){
         size = GetComponent<Collider>().bounds.size;
         rigidBody = transform.parent.GetComponent<Rigidbody>();
+        originalScale = transform.parent.transform.localScale;
     }
     
     // Update is called once per frame
@@ -84,28 +86,30 @@ public class PickupBehaviour : MonoBehaviour{
             dirVertical = 0;
         }
 
-
         if(Input.GetKeyDown(KeyCode.C)){
-            if(hasCollided && !isHoldingObject){
+            if(hasCollided && !isHoldingObject && collision != null){
                 isHoldingObject = true;
-                objeto = Instantiate(collision, new Vector3(this.transform.position.x, this.transform.position.y+2, this.transform.position.z), Quaternion.identity);
+                objeto = Instantiate(collision, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+                this.transform.parent.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
                 objeto.transform.SetParent(this.transform);
+                objeto.transform.Translate(0,this.transform.parent.transform.position.y,0);
                 Rigidbody body = objeto.GetComponent<Rigidbody>();
                 body.useGravity = false;
                 body.isKinematic = true;
                 body.detectCollisions = false;
                 Destroy(collision);
             }
-            else if(isHoldingObject){
+            else if(isHoldingObject && objeto != null){
                 initialPress = Time.time;
                 ready = true;
             }
         }
         if(Input.GetKeyUp(KeyCode.C)){
-            if(isHoldingObject && ready){
+            if(isHoldingObject && ready && objeto != null){
                 finalRelease = Time.time;
                 ready = false;
                 throwObject();
+                this.transform.parent.transform.localScale = originalScale;
             }
         }
     }
@@ -129,10 +133,10 @@ public class PickupBehaviour : MonoBehaviour{
         float dist = 0;
 
         if(finalRelease - initialPress >= maximunValue){
-            dist = 12;
+            dist = 10;
         }
         else{
-            dist = 8 + (finalRelease - initialPress);
+            dist = 5 + (finalRelease - initialPress);
         }
 
         Vector3 target = new Vector3(this.transform.position.x,0.5f,this.transform.position.z);
@@ -167,5 +171,6 @@ public class PickupBehaviour : MonoBehaviour{
         objeto.transform.rotation = new Quaternion(0,0,0,1);
         isHoldingObject = false;
         hasCollided = false;
+
     }
 }
