@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RubishInstancer : MonoBehaviour
 {
@@ -8,10 +9,14 @@ public class RubishInstancer : MonoBehaviour
 
     public InstanceArea[] areas;
     public Rubish[] rubishTypes;
+
+    public Canvas canvas;
     public int maxCounter;
 
     private List<GameObject> rubishInstances;
     private int currentCounter;
+
+    public GameObject textPrefab;
 
     RubishInstancer() {
         rubishInstances = new List<GameObject>();
@@ -41,6 +46,16 @@ public class RubishInstancer : MonoBehaviour
                     GameObject rubish = Instantiate(rubishType.gameObject, new Vector3(x, y, z), Quaternion.identity);
                     currentCounter += rubishType.value;
                     rubishInstances.Add(rubish);
+
+                    // Instanciacion de los text de la UI
+                    GameObject textoPuntos = GameObject.Instantiate(textPrefab);
+                    textoPuntos.transform.SetParent(canvas.transform);
+                    Text textoDelPrefab = textoPuntos.GetComponent<Text>();
+
+                    // instanciamos el objeto y ya desde la esfera se le llama para la posicion y los puntos
+                    rubish.GetComponentInChildren<Points>().puntosBasura = textoDelPrefab;
+                    rubish.GetComponentInChildren<Rubish>().textoAsociado = textoPuntos;
+
                     valid = true;
                 } else {
                     noLongerValid.Add(rubishType);

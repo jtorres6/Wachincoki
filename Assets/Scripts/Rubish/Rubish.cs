@@ -6,9 +6,12 @@ public class Rubish : MonoBehaviour {
     public int value;
     public int ownership;
 
+    public GameObject textoAsociado;
+
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.transform.tag == "Wave") {
             Debug.Log("Hit by wave. Remove " + value + " to Player " + ownership);
+            Destroy(textoAsociado);
             Destroy(gameObject);
             return;
         }
