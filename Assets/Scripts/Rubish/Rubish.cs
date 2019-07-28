@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Rubish : MonoBehaviour {
+    public GameObject textoAsociado;
     public int value;
     public int ownership;
 
@@ -19,6 +20,7 @@ public class Rubish : MonoBehaviour {
         if (other.gameObject.transform.tag == "Wave") {
             Debug.Log("Hit by wave. Remove " + value + " to Player " + ownership);
             gameManager.DecreaseHP(ownership, value);
+            Destroy(textoAsociado);
             Destroy(gameObject);
             return;
         }
