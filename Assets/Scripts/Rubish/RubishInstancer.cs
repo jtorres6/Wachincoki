@@ -49,4 +49,9 @@ public class RubishInstancer : MonoBehaviour
             } while(!valid); 
         }                  
     }
+
+    // Update is called once per frame
+    void Update() {
+        
+    }
 }
