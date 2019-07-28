@@ -6,12 +6,15 @@ public class Truck : MonoBehaviour {
     private bool stopped;
     private Rigidbody rigidBody;
     private float vX, vZ;
+    private AudioSource claxon;
 
     public int speed = 5;
 
     public Vector3[] positions;
     public Vector3[] scales;
     public Vector3[] velocity;
+
+    private GameManager gameManager;
 
     Truck() {
         stopped = false;
@@ -26,6 +29,10 @@ public class Truck : MonoBehaviour {
         transform.localScale = scales[idx];
         vX = velocity[idx].x;
         vZ = velocity[idx].z;
+
+        gameManager = GameManager.Instance;
+
+        claxon = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -41,6 +48,8 @@ public class Truck : MonoBehaviour {
         if (other.gameObject.transform.tag == "Reset") {
             yield return StopForSeconds(5);
 
+            gameManager.ResetTruck();
+
             int idx = Random.Range(0, positions.Length);
             transform.position = positions[idx];
             transform.localScale = scales[idx];
@@ -49,7 +58,9 @@ public class Truck : MonoBehaviour {
         }
 
         if (other.gameObject.transform.tag == "StopArea") {
-            yield return StopForSeconds(2);
+            claxon.Play();
+            yield return StopForSeconds(3);
+
         }
     }
 
@@ -60,7 +71,7 @@ public class Truck : MonoBehaviour {
     IEnumerator StopForSeconds(int seconds) {
         stopped = true;
         rigidBody.velocity = new Vector3(0, 0, 0);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(seconds);
         stopped = false;
     }
 }

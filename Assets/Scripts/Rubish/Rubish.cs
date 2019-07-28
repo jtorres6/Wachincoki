@@ -9,6 +9,7 @@ public class Rubish : MonoBehaviour
     public int ownership;
 
     private GameManager gameManager;
+    private AudioSource sonidito;
 
     void Awake()
     {
@@ -16,6 +17,7 @@ public class Rubish : MonoBehaviour
         //         Instantiate(gameManager);
 
         gameManager = GameManager.Instance;
+        sonidito = this.gameObject.GetComponentInChildren<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -29,10 +31,14 @@ public class Rubish : MonoBehaviour
             return;
         }
 
-        if (other.gameObject.transform.tag == "TruckGarbage")
-        {
-            gameManager.IncreaseHP(ownership, value / 2);
-            Destroy(gameObject);
+        if (other.gameObject.transform.tag == "TruckGarbage") {
+            // If fits
+            if (gameManager.GetTruckCurrentCapacity() + value <= gameManager.truckCapacity) {
+                gameManager.IncreaseHP(ownership, value/2);
+                sonidito.Play();
+                Destroy(gameObject);
+            }
+
             return;
         }
 
