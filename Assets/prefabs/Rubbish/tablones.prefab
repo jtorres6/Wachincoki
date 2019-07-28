@@ -110,6 +110,9 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7762592, y: 2.2795565, z: 0.19225258}
   m_Center: {x: -0.050285697, y: -0.31971598, z: 0.032854564}
+--- !u!96 &8751062925845917050
+TrailRenderer:
+  serializedVersion: 2
 --- !u!114 &4955699091482736106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,11 +134,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2361895984860809911}
     m_Modifications:
-    - target: {fileID: 8201945362032362707, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21,
-        type: 3}
-      propertyPath: m_Name
-      value: Controller
-      objectReference: {fileID: 0}
     - target: {fileID: 3290306929782656030, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -149,7 +147,7 @@ PrefabInstance:
     - target: {fileID: 3290306929782656030, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.213
+      value: 0.007
       objectReference: {fileID: 0}
     - target: {fileID: 3290306929782656030, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21,
         type: 3}
@@ -229,6 +227,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3515562526039034877, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21, type: 3}
+--- !u!1 &5842305868734813137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8201945362032362707, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21,
+    type: 3}
+  m_PrefabInstance: {fileID: 2361895983350306562}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &967894976190470940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3290306929782656030, guid: 2c7ed1dcd3f8ba74e942c9122ab0be21,

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementBehaviour2 : MonoBehaviour{
-    private int speed = 5;
+    public int speed = 5;
     private Rigidbody rigidBody;
     private Transform parentTransform;
     // Start is called before the first frame update
