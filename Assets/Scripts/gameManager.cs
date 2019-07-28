@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         winner = 0;
         gameOver = false;
-        player1HP = 500;
+        player1HP = 10;
         player2HP = 500;
 
         // Instanciamos objetos, marea etc
@@ -55,7 +55,8 @@ public class GameManager : MonoBehaviour
         if (gameOver){
             winner = player1HP > player2HP ? 1 : 2;
 
-            canvas.GetComponent<pause>().Pause();
+            ResetPlaygame();
+            canvas.GetComponent<pause>().ExitMainMenu();
         }
     }
 
@@ -77,6 +78,16 @@ public class GameManager : MonoBehaviour
         } else {
             player2HP += value;
         }
+    }
+
+    public void ResetPlaygame() {
+        winner = 0;
+        gameOver = false;
+        player1HP = 10;
+        player2HP = 500;
+
+        waveCoroutine = WaitAndWave(10);
+        StartCoroutine(waveCoroutine);
     }
 
     private IEnumerator WaitAndWave(int waitTime) {
