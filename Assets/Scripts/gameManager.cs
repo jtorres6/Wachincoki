@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
     public GameObject wave;
     public Text text1;
     public Text text2;
+    public int truckCapacity;
 
     private static GameManager _instance = null;
     private int player1HP;
     private int player2HP;
     private bool gameOver;
     private int winner;
+    private int truckCapacityReached;
 
     private IEnumerator waveCoroutine;
     private const int _animationTime = 15;
@@ -35,8 +37,9 @@ public class GameManager : MonoBehaviour
     {
         winner = 0;
         gameOver = false;
-        player1HP = 500;
+        player1HP = 10;
         player2HP = 500;
+        truckCapacityReached = 0;
 
         // Instanciamos objetos, marea etc
         waveCoroutine = WaitAndWave(10);
@@ -55,7 +58,8 @@ public class GameManager : MonoBehaviour
         if (gameOver){
             winner = player1HP > player2HP ? 1 : 2;
 
-            canvas.GetComponent<pause>().Pause();
+            ResetPlaygame();
+            canvas.GetComponent<pause>().ExitMainMenu();
         }
     }
 
@@ -77,6 +81,28 @@ public class GameManager : MonoBehaviour
         } else {
             player2HP += value;
         }
+    }
+
+    public void ResetPlaygame() {
+        winner = 0;
+        gameOver = false;
+        player1HP = 10;
+        player2HP = 500;
+
+        waveCoroutine = WaitAndWave(10);
+        StartCoroutine(waveCoroutine);
+    }
+
+    public void ResetTruck() {
+        truckCapacityReached = 0;
+    }
+ 
+    public void IncreaseTruckReached(int value) {
+        truckCapacityReached += value;
+    }
+ 
+    public int GetTruckCurrentCapacity() {
+        return truckCapacityReached;
     }
 
     private IEnumerator WaitAndWave(int waitTime) {
