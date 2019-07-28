@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RubishInstancer : MonoBehaviour
 {
-    const float y_offset = 0.5f;
+    //const float y_offset = 0.5f;
 
     public InstanceArea[] areas;
     public Rubish[] rubishTypes;
@@ -34,7 +34,7 @@ public class RubishInstancer : MonoBehaviour
                 rubishType.ownership = insarea.ownership;
 
                 float x = Random.Range(insarea.minX, insarea.maxX);
-                float y = Random.Range(insarea.minY, insarea.maxY) + y_offset;
+                float y = Random.Range(insarea.minY, insarea.maxY);
                 float z = Random.Range(insarea.minZ, insarea.maxZ);
 
                 if (currentCounter + rubishType.value <= maxCounter) {
