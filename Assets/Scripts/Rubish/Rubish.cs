@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Rubish : MonoBehaviour {
     public int value;
-
     public int ownership;
 
     void OnTriggerEnter(Collider other) {
@@ -15,7 +14,6 @@ public class Rubish : MonoBehaviour {
         }
 
         if (other.gameObject.transform.tag == "TruckGarbage") {
-            Debug.Log("Hit by Truck");
             Destroy(gameObject);
             return;
         }
@@ -32,4 +30,11 @@ public class Rubish : MonoBehaviour {
     public void SetOwnership(int owner) {
         ownership = owner;
     }
-}
+
+    public void Update() {
+        if (transform.position.y < -2) {
+            Debug.Log("Destroy Object");
+            Destroy(gameObject);
+        }
+    }
+};

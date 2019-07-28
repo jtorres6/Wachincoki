@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class InstanceArea : MonoBehaviour {
     public int ownership;
-    
-    public int minX;
-    public int maxX;
 
-    public int minY;
-    public int maxY;
+    public float minX;
+    public float maxX;
 
-    public int minZ;
-    public int maxZ;
+    public float minY;
+    public float maxY;
+
+    public float minZ;
+    public float maxZ;
 }

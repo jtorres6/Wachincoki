@@ -6,30 +6,45 @@ public class RubishInstancer : MonoBehaviour
 {
     const float y_offset = 0.5f;
 
-    public InstanceArea area;
-    public int instances;
+    public InstanceArea[] areas;
     public Rubish[] rubishTypes;
+    public int maxCounter;
 
     private List<GameObject> rubishInstances;
+    private int currentCounter;
 
     RubishInstancer() {
         rubishInstances = new List<GameObject>();
+        currentCounter = 0;
     }
 
     // Start is called before the first frame update
     void Start() {
-        for (int i = 0; i < instances; i++) {
-            int idx = Random.Range(0, rubishTypes.Length);
-            Rubish rubishType = rubishTypes[idx];
-            rubishType.ownership = area.ownership;
-            
-            float x = Random.Range(area.minX, area.maxX);
-            float y = Random.Range(area.minY, area.maxY) + y_offset;
-            float z = Random.Range(area.minZ, area.maxZ);
+        bool valid = false;
 
-            GameObject rubish = Instantiate(rubishType.gameObject, new Vector3(x, y, z), Quaternion.identity);
-            rubishInstances.Add(rubish);
-        }
+        // Greedy to create rubish
+        while (currentCounter < maxCounter) {
+            do {
+                int area_idx = Random.Range(0, areas.Length);
+                InstanceArea insarea = areas[area_idx];
+
+                int idx = Random.Range(0, rubishTypes.Length);
+                Rubish rubishType = rubishTypes[idx];
+                rubishType.ownership = insarea.ownership;
+
+                float x = Random.Range(insarea.minX, insarea.maxX);
+                float y = Random.Range(insarea.minY, insarea.maxY) + y_offset;
+                float z = Random.Range(insarea.minZ, insarea.maxZ);
+
+                if (currentCounter + rubishType.value <= maxCounter) {
+                    GameObject rubish = Instantiate(rubishType.gameObject, new Vector3(x, y, z), Quaternion.identity);
+                    currentCounter += rubishType.value;
+                    rubishInstances.Add(rubish);
+                    valid = true;
+                }
+
+            } while(!valid); 
+        }                  
     }
 
     // Update is called once per frame
