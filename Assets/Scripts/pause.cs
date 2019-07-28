@@ -26,16 +26,14 @@ public class pause : MonoBehaviour
         }
     }
 
-    void Resume(){
-
+    public void Resume(){
         pausaUI.SetActive(false);
         Time.timeScale = 1f;
         paused = false;
 
     }
 
-    void Pause(){
-
+    public void Pause(){
         pausaUI.SetActive(true);
         Time.timeScale = 0f;
         paused = true;

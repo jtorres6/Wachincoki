@@ -20,7 +20,8 @@ public class PickupBehaviour : MonoBehaviour{
 
     private float initialPress;
     private float finalRelease;
-    private float maximunValue = 1.0f; //Tiempo necesario para conseguir el mayor lanzamiento 
+    private float maximunValue = 1.0f; //Tiempo necesario para conseguir el mayor lanzamiento
+    
     // Start is called before the first frame update
     void Start(){
         size = GetComponent<Collider>().bounds.size;

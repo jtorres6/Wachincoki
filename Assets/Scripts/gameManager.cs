@@ -3,24 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    private int player1HP = 100;
-    private int player2HP = 100;
-    
+    public static GameManager Instance { get { return _instance; } }
+    public GameObject canvas;
+    public GameObject wave;
     public Text text1;
     public Text text2;
 
-    private bool isRunning = false;
-    private bool gameOver = false;
+    private static GameManager _instance = null;
+    private int player1HP;
+    private int player2HP;
+    private bool gameOver;
+    private int winner;
 
-    private int winner = 0;
+    private IEnumerator waveCoroutine;
+    private const int _animationTime = 15;
+
+    // https://unity3d.com/es/learn/tutorials/projects/2d-roguelike-tutorial/writing-game-manager?playlist=17150
+    void Awake() {
+        if (_instance != null && _instance != this) {
+            Destroy(this.gameObject);
+        } else {
+            _instance = this;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
         winner = 0;
+        gameOver = false;
+        player1HP = 500;
+        player2HP = 500;
+
+        // Instanciamos objetos, marea etc
+        waveCoroutine = WaitAndWave(10);
+        StartCoroutine(waveCoroutine);
     }
 
     // Update is called once per frame
@@ -30,32 +50,41 @@ public class gameManager : MonoBehaviour
         text1.text = player1HP.ToString();
         text2.text = player2HP.ToString();
 
-        if (isRunning){
+        // si el jugador tira el tarro al otro, pasa el propietario al otro
 
-            // instanciamos objetos, marea etc
+        if (gameOver){
+            winner = player1HP > player2HP ? 1 : 2;
 
-            // si la marea elimina un determinado objeto, resta vida del jugador de ese objeto
-
-            // si el jugador tira el tarro al otro, pasa el propietario al otro
-
-            // si el jugador tira el objeto al camion, sumale la mitad del valor de la vida
-
-            if (player1HP <= 0){
-                winner = 2;
-                gameOver = true;
-            }
-            else if (player2HP <= 0){
-                winner = 1;
-                gameOver = true;
-            }
-
-            if (gameOver == false){
-
-            }
-            else{
-                //muestra por la UI lo de quien ha ganado y despues isrunning = false
-            }
+            canvas.GetComponent<pause>().Pause();
         }
-        
+    }
+
+    public void DecreaseHP(int playerID, int value) {
+        if (playerID == 1) {
+            player1HP -= value;
+        } else {
+            player2HP -= value;
+        }
+
+        if (player1HP <= 0 || player2HP <= 0) {
+            gameOver = true;
+        }
+    }
+
+    public void IncreaseHP(int playerID, int value) {
+        if (playerID == 1) {
+            player1HP += value;
+        } else {
+            player2HP += value;
+        }
+    }
+
+    private IEnumerator WaitAndWave(int waitTime) {
+        Debug.Log("In coroutine");
+        while (!gameOver) {
+            Animator waveAnim = wave.GetComponent<Animator>();
+            waveAnim.SetTrigger("Activate");
+            yield return new WaitForSeconds(_animationTime  + 10);
+        }
     }
 }
