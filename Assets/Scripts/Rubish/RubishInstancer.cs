@@ -68,4 +68,9 @@ public class RubishInstancer : MonoBehaviour
         rubishInstances = null;
         rubishInstances = new List<GameObject>();
     }
+
+    // Update is called once per frame
+    void Update() {
+        
+    }
 }

@@ -7,10 +7,13 @@ public class MovementBehaviour : MonoBehaviour
     public int speed = 5;
     private Rigidbody rigidBody;
     private Transform parentTransform;
+    private Animator animator;
     // Start is called before the first frame update
 
     private int facing = 0; // 0 up 1 right 2 down 3 left
-    void Start(){
+    void Start()
+    {
+        animator = transform.parent.GetComponent<Animator>();
         rigidBody = transform.parent.GetComponent<Rigidbody>();
         parentTransform = transform.parent.GetComponent<Transform>();
     }
@@ -60,5 +63,6 @@ public class MovementBehaviour : MonoBehaviour
         }
         
         rigidBody.velocity = new Vector3(x * speed, rigidBody.velocity.y , z * speed);
+        animator.SetFloat("Speed", Mathf.Abs(x)+Mathf.Abs(z));
     }
 }

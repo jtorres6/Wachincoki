@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour
     {
         winner = 0;
         gameOver = false;
-        player1HP = 10;
-        player2HP = 500;
+        player1HP = 100;
+        player2HP = 100;
         truckCapacityReached = 0;
 
         // Instanciamos objetos, marea etc
@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void DecreaseHP(int playerID, int value) {
+        Debug.Log("destruye");
         if (playerID == 1) {
             player1HP -= value;
         } else {
@@ -86,8 +87,8 @@ public class GameManager : MonoBehaviour
     public void ResetPlaygame() {
         winner = 0;
         gameOver = false;
-        player1HP = 10;
-        player2HP = 500;
+        player1HP = 100;
+        player2HP = 100;
 
         waveCoroutine = WaitAndWave(10);
         StartCoroutine(waveCoroutine);

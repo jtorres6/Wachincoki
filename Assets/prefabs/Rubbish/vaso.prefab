@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7540689376160382155}
   - component: {fileID: 7540689376160382154}
   - component: {fileID: 3950035946284808950}
+  - component: {fileID: 1020610398239957346}
   m_Layer: 0
   m_Name: vaso
   m_TagString: Rubbish
@@ -108,7 +109,7 @@ BoxCollider:
   m_GameObject: {fileID: 7540689376160382153}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.6225439, y: 0.62254137, z: 0.56822354}
   m_Center: {x: -0.0914197, y: 0.11061575, z: 0.28411177}
@@ -127,6 +128,20 @@ MonoBehaviour:
   textoAsociado: {fileID: 0}
   value: 5
   ownership: 1
+--- !u!136 &1020610398239957346
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7540689376160382153}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3112719
+  m_Height: 0.62254137
+  m_Direction: 1
+  m_Center: {x: -0.09141969, y: 0.11061575, z: 0.28411177}
 --- !u!1 &7540689376664765160
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,16 +320,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7540689376160382158}
     m_Modifications:
-    - target: {fileID: 8183618685311259951, guid: 679d0b7a0db5fb6499c77ee2dd884512,
-        type: 3}
-      propertyPath: m_Name
-      value: puntosFlotando
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183618685311259951, guid: 679d0b7a0db5fb6499c77ee2dd884512,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8183618685311259948, guid: 679d0b7a0db5fb6499c77ee2dd884512,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -369,6 +374,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183618685311259951, guid: 679d0b7a0db5fb6499c77ee2dd884512,
+        type: 3}
+      propertyPath: m_Name
+      value: puntosFlotando
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183618685311259951, guid: 679d0b7a0db5fb6499c77ee2dd884512,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8183618685311259949, guid: 679d0b7a0db5fb6499c77ee2dd884512,
         type: 3}

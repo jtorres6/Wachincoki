@@ -6,20 +6,23 @@ public class MovementBehaviour2 : MonoBehaviour{
     public int speed = 5;
     private Rigidbody rigidBody;
     private Transform parentTransform;
+    private Animator animator;
     // Start is called before the first frame update
 
     private int facing = 0; // 0 up 1 right 2 down 3 left
-    void Start(){
+    void Start()
+    {
+        animator = transform.parent.GetComponent<Animator>();
         rigidBody = transform.parent.GetComponent<Rigidbody>();
         parentTransform = transform.parent.GetComponent<Transform>();
     }
 
     // Update is called once per frame
-    void Update(){
+    void FixedUpdate(){
         float x = 0; 
         float z = 0;
-
-        if(Input.GetKey(KeyCode.UpArrow)){
+        
+        if (Input.GetKey(KeyCode.UpArrow)){
             z = 1;
             facing = 0;
         }
@@ -59,5 +62,6 @@ public class MovementBehaviour2 : MonoBehaviour{
         }
         
         rigidBody.velocity = new Vector3(x * speed, rigidBody.velocity.y , z * speed);
+        
     }
 }
